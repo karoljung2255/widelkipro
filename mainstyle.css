@@ -1,0 +1,242 @@
+body, html {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+
+#pasek1 {
+    position: relative;
+    top: 0;
+    float: left;
+    width: 100%;
+    height: 100px;
+    background: #DFCAAA;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+}
+
+#logo img {
+    margin: 10px;
+    height: 80px;
+}
+
+#pasek2 {
+    float: left;
+    width: 100%;
+    height: 100px;
+    background: #CEBB9E;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+iframe {
+    display: block;
+    width: 100%;
+    height: 1200px;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#footercontainer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background: #DFCAAA;
+    overflow: hidden;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#footer {
+    position: relative;
+    bottom: 0;
+    float: left;
+    width: 75%;
+    height: 70px;
+    background: #DFCAAA;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+#footer2 {
+    position: relative;
+    bottom: 0;
+    float: left;
+    width: 25%;
+    height: 70px;
+    background: #DFCAAA;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    justify-content: flex-end;
+}
+
+#tabela {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+.tede {
+    width: 25%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.guzik1 {
+    width: 80%;
+    height: 50px;
+    background: linear-gradient(to bottom, #FFFFFF, #F0F0F0);
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+    transition-duration: 0.1s;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #333333;
+}
+
+.guzik1:hover {
+    background-color: #e8e8e8;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+
+#napisguzik1 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    margin-top: 12px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .tede {
+        width: 100%;
+        height: auto;
+        display: block;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .guzik1 {
+        width: calc(50% - 20px);
+        margin: 10px;
+        border-radius: 10px;
+    }
+
+    #pasek2 {
+        float: left;
+        width: 100%;
+        height: auto;
+        background: #CEBB9E;
+    }
+
+    #footercontainer {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        height: 140px;
+        background: #DFCAAA;
+        overflow: hidden;
+    }
+    
+    #footer, #footer2 {
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 70px;
+        background: #DFCAAA;
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        justify-content: center;
+    }
+    #pasek1 {
+        position: relative;
+        top: 0;
+        float: left;
+        width: 100%;
+        height: 200px;
+        background: #DFCAAA;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+}
+
+#smedia {
+    margin-left: 10px;
+    float: left;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+#home {
+    margin-right: 15px;
+    margin-left: 10px;
+    float: left;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+#contact {
+    position: relative;
+    float: left;
+    margin-left: 10px;
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+#ikonyprawo {
+    position: relative;
+    margin-left: 5px;
+    float: left;
+}
+
+#kreska {
+    margin: 5px auto;
+    border-left: 1px solid black;
+    height: 60px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#footer2 #ikonyprawo,
+#footer2 #contact {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#logo {
+    font-weight: 200;
+    font-size: 55px;
+    color: #000000;
+}
+
+#logowanie {
+    position: relative;
+    float: none;
+}
+
+#login-text {
+    font-size: 50px;
+    color: #333;
+}

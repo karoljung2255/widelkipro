@@ -1,0 +1,95 @@
+  body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+  }
+
+  table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+
+  th, td {
+    padding: 16px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #4CAF50;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+  }
+
+  td {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .image-column {
+    width: 200px;
+  }
+
+  .text-column {
+    width: calc(100% - 200px);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  img:hover {
+    transform: scale(1.05);
+  }
+
+  #opis {
+      font-size: 20px;
+  }
+
+button {
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button.removed {
+  background-color: #f44336;
+}
+
+button.removed:hover {
+  background-color: #d32f2f;
+}
+
+#header {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 50px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 20px;
+}
+
+#oldprice {
+  text-decoration: line-through;
+}

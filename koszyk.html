@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Koszyk</title>
+  <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+<h1 id="header">Twój koszyk</h1>
+
+<table>
+  <tr>
+    <th class="image-column">Widełki</th>
+    <th class="text-column">Opis</th>
+  </tr>
+  <tbody id="cart-items">
+  </tbody>
+</table>
+
+<script>
+window.onload = function () {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+  const cartList = document.getElementById('cart-items');
+
+  if (cartItems && cartItems.length > 0) {
+    cartItems.forEach(productId => {
+      const productRow = createProductRow(productId);
+      cartList.appendChild(productRow);
+    });
+  } else {
+    const emptyRow = document.createElement('tr');
+    const emptyMessage = document.createElement('td');
+    emptyMessage.setAttribute('colspan', '2');
+    emptyMessage.textContent = 'Twój koszyk jest pusty.';
+    emptyRow.appendChild(emptyMessage);
+    cartList.appendChild(emptyRow);
+  }
+};
+
+function createProductRow(productId) {
+  const productInfo = getProductInfo(productId);
+
+  const tableRow = document.createElement('tr');
+  const imageColumn = document.createElement('td');
+  const textColumn = document.createElement('td');
+
+  const productImage = document.createElement('img');
+  productImage.src = `widly${productId}.png`;
+  productImage.alt = 'Obrazek';
+  imageColumn.appendChild(productImage);
+
+  const productName = document.createElement('h1');
+  productName.textContent = productInfo.name;
+  const productDescription = document.createElement('p');
+  productDescription.textContent = productInfo.description;
+  const productPrice = document.createElement('h2');
+  productPrice.textContent = productInfo.price;
+
+  if ([6, 7, 8, 9].includes(productId)) {
+    productPrice.style.textDecoration = 'line-through';
+
+    textColumn.appendChild(productName);
+    textColumn.appendChild(productDescription);
+    textColumn.appendChild(productPrice);
+
+    const newPrice = document.createElement('h2');
+    let newProductPrice = '';
+
+    switch (productId) {
+      case 6:
+        newProductPrice = '179.99 zł';
+        break;
+      case 7:
+        newProductPrice = '71.99 zł';
+        break;
+      case 8:
+        newProductPrice = '39.99 zł';
+        break;
+      case 9:
+        newProductPrice = '59.99 zł';
+        break;
+      default:
+        newProductPrice = 'Nowa cena';
+        break;
+    }
+
+    const newPriceElem = document.createElement('h2');
+    newPriceElem.textContent = newProductPrice;
+    textColumn.appendChild(newPriceElem);
+  } else {
+    textColumn.appendChild(productName);
+    textColumn.appendChild(productDescription);
+    textColumn.appendChild(productPrice);
+  }
+
+  const removeButton = document.createElement('button');
+  removeButton.textContent = 'Usuń z koszyka';
+  removeButton.addEventListener('click', function () {
+    removeProductFromCart(productId);
+    tableRow.remove();
+  });
+
+  textColumn.appendChild(removeButton);
+
+  tableRow.appendChild(imageColumn);
+  tableRow.appendChild(textColumn);
+
+  return tableRow;
+}
+
+function removeProductFromCart(productId) {
+  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  cartItems = cartItems.filter(item => item !== productId);
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+}
+
+function getProductInfo(productId) {
+  let productName = '';
+  let productDescription = '';
+  let productPrice = '';
+
+  switch (productId) {
+    case 1:
+      productName = 'VULCANUS VUN130R';
+      productDescription = 'VULCANUS VUN130R to solidne i wydajne widły przemysłowe, które charakteryzują się wysoką jakością wykonania i wszechstronnym zastosowaniem. Zaprojektowane, aby sprostać wymaganiom różnorodnych zadań transportowych, te widełki stanowią niezawodne narzędzie w obszarze logistyki, magazynowania oraz w transporcie materiałów i ładunków.'; // Opis produktu
+      productPrice = '59.99 zł';
+      break;
+    case 2:
+      productName = 'FISKARS 1001413';
+      productDescription = 'Linia narzędzi ergonomicznych Fiskars gwarantuje prawidłową postawę podczas pracy. Nawet długotrwałe, monotonne wykonywanie jednej czynności nie powoduje zmęczenia. Wygięty pod kątem trzonek minimalizuje napięcie mięśni pleców i gwarantuje naturalną pozycję ciała. Kąt nachylenia uchwytu 17° naśladuje naturalny ruch dłoni. Głowice są hartowane, co zapewnia wytrzymałość narzędzi.';
+      productPrice = '159.99 zł';
+      break;
+    case 3:
+      productName = 'YATO YT-86805';
+      productDescription = 'YATO YT-86805 to solidne widełki, które oferują trwałość, wszechstronność i ergonomiczny design, co czyni je idealnym rozwiązaniem dla firm poszukujących efektywnego narzędzia do przenoszenia różnorodnych ładunków w sektorze przemysłowym.';
+      productPrice = '69.99 zł';
+      break;
+    case 4:
+      productName = 'GARDENA ErgoLine 17013-20';
+      productDescription = 'Widły do kopania GARDENA ErgoLine to szczególnie wygodne narzędzie do kopania bez uszkadzania korzeni, przenoszenia i spulchniania ziemi, szczególnie w miejscach obsadzonych roślinami. Bardzo szeroki i ergonomicznie ukształtowany uchwyt w kształcie litery D można wygodnie trzymać w obu dłoniach w dowolnym miejscu, aby maksymalnie ułatwić sobie pracę. Owalny profil trzonka uniemożliwia przypadkowe obrócenie się rękojeści. Pokrycie trzonka antypoślizgowym tworzywem sztucznym zapewnia wygodną i bezpieczną obsługę. Wyjątkowo ostre ostrze szpadla jest wykonane ze stali hartowanej. Niezwykle szeroka listwa na stopę ze specjalnym profilem gwarantuje pewne trzymanie podczas wbijania narzędzia w ziemię i służy optymalnemu przeniesieniu siły.';
+      productPrice = '199.99 zł';
+      break;
+    case 5:
+      productName = 'FISKARS Solid 1003458';
+      productDescription = 'Fiskars Solid 1003458 to gama funkcjonalnych narzędzi charakteryzujących się trwałością i wytrzymałością, uniwersalnym zastosowaniem oraz jakością Fiskars. Narzędzia posiadają głowicę z hartowanej stali oraz wygodną rączkę z tworzywa w kształcie litery D. Idealne do przenoszenia ogrodniczych odpadków i wycinków. Wytrzymałe zęby z hartowanej stali.';
+      productPrice = '119.99 zł';
+      break;
+    case 6:
+      productName = 'FISKARS Xact 1003685';
+      productDescription = 'Widły zostały wykonane z wysokiej jakości materiałów. Dzięki długiemu trzonkowi dedykowane są wysokim osobom, aby zapewnić jak najbardziej ergonomiczną i efektywną pracę. Narzędzie doskonale sprawdzi się podczas pielenia, napowietrzania i kopania. Zęby z kutej stali umożliwiają pracę nawet w twardej glebie. Wygodna rączka zapewnia idealną kontrolę podczas pracy. Idealne narzędzie do przenoszenia ogrodniczych odpadków i wycinków. Umożliwia przerzucanie kępek trawy do nasadzeń. Widły mogą być wykorzystane do napowietrzania trawnika.';
+      productPrice = '229.99 zł';
+      break;
+    case 7:
+      productName = 'Bradas KT-V2031';
+      productDescription = 'Solidne widły do przekopywania ziemi Hartowana głowica ze stali borowej Trzonek wzmocniony dodatkowym przetłoczeniem Konstrukcja pokryta farbą proszkową wysokiej jakości Antypoślizgowa okładzina na trzonku gwarantuje wygodny i pewny chwyt Wysoka odporność na ścieranie i zniekształcenia';
+      productPrice = '95.99 zł';
+      break;
+    case 8:
+      productName = 'Schmith SG-WO-1';
+      productDescription = 'Odpowiedni profil wideł nie obciąża kręgosłupa. Wygodne uchwyty ułatwiają pracętrzonek metalowy, profilowany, wzmocniony eliptycznym przekrojem wytrzymały profilowany uchwyt głowica hartowana spawana z trzonkiem.';
+      productPrice = '71.99 zł';
+      break;
+    case 9:
+      productName = 'FISKARS Solid 1014819';
+      productDescription = 'Widły FISKARS do kopania zostały wykonane z wysokiej jakości materiałów. Narzędzie doskonale sprawdzi się podczas pielenia, napowietrzania i kopania. Zęby z kutej stali umożliwiają pracę nawet w twardej glebie. Trzonek z selekcjonowanego drewna i wygodna rączka zapewnia idealną kontrolę podczas pracy. Idealne narzędzie do przenoszenia ogrodniczych odpadków i wycinków. Umożliwia przerzucanie kępek trawy do nasadzeń. Widły mogą być wykorzystane do napowietrzania trawnika.';
+      productPrice = '139.99 zł';
+      break;
+    case 10:
+      productName = 'Zestaw narzędzi ogrodniczych Bradas';
+      productDescription = 'Zestaw poręcznych narzędzi ogrodniczych z serii DE LUXE, przeznaczonych do różnego rodzaju prac w ogrodzie i na działce. Wszystkie narzędzia wykonane są z mocnej stali. Posiadają również ergonomiczne, wygodne uchwyty z miękkim uchwytem. Zestaw składa się z 8 narzędzi ogrodowych.';
+      productPrice = '79.99 zł';
+      break;
+    case 11:
+      productName = 'Zestaw narzędzi ogrodniczych DAAEC';
+      productDescription = 'Wykonany z wysokiej jakości materiał ze stopu aluminium, trwały, sprawia, że ogrodnictwo jest łatwiejsze i przyjemniejsze. Z organizerem narzędzi ogrodowych Tote ułatwia przenoszenie i chroni narzędzia ogrodowe. Miły prezent urodzinowy na parapetówkę dla miłośników ogrodnictwa. Idealny do różnorodnych zadań, w tym kopania, pielenia, grabienia, spulchniania gleby, napowietrzania, przesadzania, przycinania i podlewania. Korzystając z tych ręcznych narzędzi ogrodniczych, po prostu zacznij swoje hobby ogrodnicze, aby uprawiać warzywa, rośliny, kwiaty i cokolwiek chcesz.';
+      productPrice = '139.99 zł';
+      break;
+    case 12:
+      productName = 'Zestaw narzędzi ogrodniczych Wolf Garten';
+      productDescription = 'Uniwersalny zestaw doskonały dla każdego początkującego ogrodnika oraz doświadczonego pasjonata ogrodu, szukającego uzupełnienia swojej kolekcji narzędzi, w którego skład wchodzą takie narzędzia ogrodnicze jak: spulchniacz, łopatka do sadzenia, skrobak do szczelin oraz sekator nożycowy.';
+      productPrice = '149.99 zł';
+      break;
+    default:
+      productName = 'Nazwa produktu';
+      productDescription = 'Opis produktu';
+      productPrice = 'x zł';
+      break;
+  }
+
+  return {
+    name: productName,
+    description: productDescription,
+    price: productPrice
+  };
+}
+
+</script>
+</body>
+</html>
